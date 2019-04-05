@@ -1,7 +1,100 @@
 Lab2:
-	what are http methods
-	what are safe https
+	what are http methods: GET, POST, PUT, DELETE, HEAD, OPTION, PATCH
+	what are safe https: HTTP + SSL = HTTPS. 
+		SSL: Secure Socket Layer
 	indempotent
 
 Lab3:
 	print the body and its headers
+
+	ARC-Message-Signature == key
+	the rest is value
+ 
+ 	cum se descivreaza?
+ 	lucreaza cu TCP
+ 	alternativa EMAP
+ 		EMAP - nu salveaza pe dispozitiv
+ 		POP3 - le salveaza pe comp
+
+
+Delivered-To: devemail42@gmail.com
+Received: by 2002:a67:7f4b:0:0:0:0:0 with SMTP id a72csp57363vsd;
+        Wed, 3 Apr 2019 02:43:49 -0700 (PDT)
+X-Received: by 2002:aca:338b:: with SMTP id z133mr1016677oiz.71.1554284629113;
+        Wed, 03 Apr 2019 02:43:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1554284629; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XXz0F8alXLXRqrTEpzThJs8dj7uckJHrOk3I9Ixc82WRZs0pgEJ5mkF4JZ0T2M9Dp8
+         SUZ7mzj+ByUaiHyHqk2RJgpEo2NDr4h5ZGMtyHkitgEf0P4KW10thbFeRrhI867vW96j
+         TMPQC+5hHoH3AbuEh5M+Yh62OC7o5gfpu0Cd1BO3iXcMmbtgzhk51U+qJFe5mRiIv701
+         z2lDwyGJLP3lR554LVnS8ynmA3CIM/lbBJG9wBgDbHeq1FU4V4uJJzXzrEAWsy4bG/zw
+         9IO1JDlrrwfD4CXNl7IPBs2U3B0Nd1hr368XdRLLcUXGm1BkVvefu+SzKydp7kSufoTg
+         oY7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=VwLPApUURipPQ5YEY/h//JClAxFlCi8KIFi8zYMrJcI=;
+        b=aurKfxV4UxYHCBgja4/fuVPtkRaEzxYMTJNzeFUc+YxNPseigFQMznxkxbA5Tp0Wcw
+         leJDwr5FZqg65Wf9v5gSO3fAm1cXklMo3kOHXDequnF1DyHAvb8w4Fm9MG4RShygwqCv
+         Fo2dkAXPHEGrLYUihpnF5l2vB9ctC6wxpmrG1oO7fKZ3WyusRP91ZJFi1wnC9SyThzeV
+         OGPiBRDtKxPinm5Qc3Pd7VLCdQtvgcUbMgOC4BPHMVpTX/uV5bmx+DcrAHViFyY3l7dG
+         Jjagbaev/X6rSmPw0PyX8ic5pNlv2wJqrQNbjN2upvN0tZ/CZbaZiYHQRM5uZN4dfZ6k
+         /6ag==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=rMWYjnap;
+       spf=pass (google.com: domain of termanemil@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=termanemil@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <termanemil@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id t13sor9903762otl.88.2019.04.03.02.43.49
+        for <devemail42@gmail.com>
+        (Google Transport Security);
+        Wed, 03 Apr 2019 02:43:49 -0700 (PDT)
+Received-SPF: pass (google.com: domain of termanemil@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=rMWYjnap;
+       spf=pass (google.com: domain of termanemil@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=termanemil@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=VwLPApUURipPQ5YEY/h//JClAxFlCi8KIFi8zYMrJcI=;
+        b=rMWYjnapXJFCcBsy5onJaUbZBFITc7wPTEkQ/8kfqRGzYnsNZfkQCt3pUwBo1vthhS
+         /q7+iZZ0vcVE7gft3ZPyFyp7uf87VomJf50Qyb6uSPyFVAeaLywyBf4G5jdHTNmTYP3Z
+         IMN2CxMx4ik1rJCp1LwMfwfEzjYW5bmyjU1zQtYsZegtFgSWliLHb4jrJ8FmMXfE7Osq
+         etMnRXPvBjCg2TlJUwKFqXboQR8gFJ0xyomsRsmOqCqly6EQsKxvYWK/wnxcncBUFEvT
+         1LNqPmmDKCry9Jk9YqWh/rSr5IuqSXqJFTnOf9GYi2/useaKrxh8RO3u78woIUIkAgHS
+         k0Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=VwLPApUURipPQ5YEY/h//JClAxFlCi8KIFi8zYMrJcI=;
+        b=JEIuzU5E6+YZeNeqLEdn94SS8KNxAoS9hS2aM4zQY0X7pWf0TmaJYlURhzeGpCcYRK
+         NwGbG4WoaO3YEdn2mdluH3HzQPJnNMrtjPVHf1+iMKzJBaScnG1pMSoa9bgphrDyue2n
+         T4qRJd8sMBK3YoJf9KXjWQuSPiIWc/an8zB611k+8ryABVEmyQs1QJsBK0Gdoy/RUEO8
+         wnPaEWTTnY1hzZIvUqbAlVbPmIqwXrrwzpbDriJtcXP5UkBap1yHTX8yoLKcAka0EPo8
+         x2bcnEJGcEN/FBPxGus0qKdh2eT45ps8bilMttYpUGgupkJMM8KtzX6+tsfIEaTh/87s
+         JpPA==
+X-Gm-Message-State: APjAAAUElP20WuRi+UNh+OAWs5FCMgepaiP8QDUSHUUcuTC1Pxifb9ZI
+	qfxWuhUzXednHey9vFdRDEa1KXoSXCVZ6X+zQgfmoH69
+X-Google-Smtp-Source: APXvYqxMrfei9aqPUczWVxK7b0V/v5mz5Uw7gdA4mFB9apvRE2DBejSjmaTjL6T7jeqpPCxORD1jP5fLA9SitgW5dJ4=
+X-Received: by 2002:a9d:1:: with SMTP id 1mr24682831ota.276.1554284628662;
+ Wed, 03 Apr 2019 02:43:48 -0700 (PDT)
+MIME-Version: 1.0
+From: Emil Terman <termanemil@gmail.com>
+Date: Wed, 3 Apr 2019 12:43:37 +0300
+Message-ID: <CA+w+g2cWe3XwKL+khD9bV0HoWYKaQAUZE5KPGVy3SsSyK7rnig@mail.gmail.com>
+Subject: Mail6
+To: devemail42@gmail.com
+Content-Type: multipart/alternative; boundary="0000000000002be06405859d1786"
+
+--0000000000002be06405859d1786
+Content-Type: text/plain; charset="UTF-8"
+
+Mail6 body
+
+--0000000000002be06405859d1786
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr">Mail6 body</div>
+
+--0000000000002be06405859d1786--
