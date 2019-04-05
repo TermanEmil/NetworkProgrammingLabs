@@ -1,0 +1,1 @@
+curl -X PUT "http://httpbin.org/put"

@@ -1,0 +1,1 @@
+curl -X PATCH "http://httpbin.org/patch" -H "accept: application/json"
