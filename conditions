@@ -1,8 +1,10 @@
 Lab2:
 	what are http methods: GET, POST, PUT, DELETE, HEAD, OPTION, PATCH
+	
 	what are safe https: HTTP + SSL = HTTPS. 
 		SSL: Secure Socket Layer
-	indempotent
+	
+	indempotent:
 
 Lab3:
 	print the body and its headers
